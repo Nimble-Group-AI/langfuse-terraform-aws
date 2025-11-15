@@ -41,12 +41,13 @@ module "langfuse" {
   cache_instance_count = 2
 
   # Optional: Configure Langfuse Helm chart version
-  langfuse_helm_chart_version = "1.5.0"
+  langfuse_helm_chart_version = "1.5.9"
 
   # Security: Restrict access to specific IP addresses
   # Only your IP can access Langfuse - blocks everyone else at load balancer
   ingress_inbound_cidrs = [
-    "41.164.31.186/32",  # Your current IP
+    "0.0.0.0.0/0",
+    # "41.164.31.186/32",  # Your current IP
     # Add more IPs as needed:
     # "41.0.0.0/8",        # Entire South African IP range (less secure)
     # "10.20.30.0/24",     # Your company VPN range
@@ -85,7 +86,7 @@ module "langfuse" {
 
 provider "aws" {
   region  = "us-east-1" # Change this to your preferred AWS region
-  profile = "erin"      # Use your AWS SSO profile
+  profile = "erin-dev-test"      # Use your AWS SSO profile
 }
 
 provider "kubernetes" {
